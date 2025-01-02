@@ -1,0 +1,8 @@
+version: '3'
+services:
+    mychatbot:
+        build: .
+        image: chatbot
+        container_name: mychatbot
+        ports:
+            - "8000:8000"
