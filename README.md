@@ -69,17 +69,17 @@ Run the following command to build and start the chatbot service:
     docker-compose up --build -d
     ```
 
-    This command will:
-    - Build the Docker image if it hasn't been built already.
-    - Start the application container in detached mode (`-d`).
-    - Map port 8000 on your local machine to port 8000 in the container.
+This command will:
+- Build the Docker image if it hasn't been built already.
+- Start the application container in detached mode (`-d`).
+- Map port 8000 on your local machine to port 8000 in the container.
 
 **Stopping the application:**
 
-    To stop the application, run:
+To stop the application, run:
 
     ```bash
     docker-compose down
     ```
 
-    This will stop and remove the container.
+This will stop and remove the container.
