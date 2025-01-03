@@ -1,5 +1,47 @@
+# Version Control
 .git
-.vscode
 .gitignore
+
+# Editor Configurations
+.vscode/
+.idea/
+
+# Python Artifacts
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+
+# Virtual Environments
+.env/
+.venv/
+env/
+ENV/
+
+#Docker files
+Dockerfile*
+docker-compose.yml
+
+# Build Artifacts
+*.egg-info/
+dist/
+build/
+*.log
+*.cover
+coverage.xml
+.coverage
+.coverage.*
+
+# Logs and Cache
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.cache/
+nosetests.xml
+
+# Other
 Makefile
 README.md
