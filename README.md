@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
 - [Usage](#usage)
+  - [Swagger Documentation](#swagger-documentation)
   - [Endpoint](#endpoint)
   - [Example Usage with cURL](#example-usage-with-curl)
   - [Response](#response)
@@ -14,6 +15,12 @@
 ## Overview
 
 ## Usage
+
+### Swagger documentation
+You can access the interactive chatbot API documentation via Swagger at the following URL: 
+
+  - Swagger UI Documentation [http://localhost:8000/swagger](http://localhost:8080/swagger)
+
 
 ### Endpoint
 The application provides an endpoint to verify its status and health. 
