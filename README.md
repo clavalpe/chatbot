@@ -19,7 +19,7 @@
 ### Swagger documentation
 You can access the interactive chatbot API documentation via Swagger at the following URL: 
 
-  - Swagger UI Documentation [http://localhost:8000/swagger](http://localhost:8080/swagger)
+  - Swagger UI Documentation [http://localhost:8000/swagger](http://localhost:8000/swagger)
 
 
 ### Endpoint
