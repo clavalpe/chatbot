@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 import logging
 
+from src.api.chat_open_ai_client import ChatOpenAIClient
+
 router = APIRouter()
 
 
@@ -19,7 +21,5 @@ async def chat(request: ChatRequest) -> ChatResponse:
     Allows interaction with a chatbot.
     """
     logging.info("Chat endpoint was accessed.")
-    response = ChatResponse(
-        assistant="Hello! of course, let me know how I can help you!."
-    )
+    response = ChatResponse(assistant=ChatOpenAIClient().invoke(request.user))
     return response
