@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import logging
-from src.api import health
+from api import health
 
 
 loggingLevel = logging.INFO
