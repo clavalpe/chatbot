@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import logging
-from api import health
+from src.api import health, chat
 
 
 loggingLevel = logging.INFO
@@ -15,3 +15,4 @@ app = FastAPI(
 )
 
 app.include_router(health.router)
+app.include_router(chat.router)
