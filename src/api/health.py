@@ -11,6 +11,8 @@ class HealthResponse(BaseModel):
 
 @router.get("/health", response_model=HealthResponse, tags=["Health"])
 async def health_check() -> HealthResponse:
-    """Checks the health status of the chatbot service."""
+    """
+    Checks the health status of the chatbot service.
+    """
     logging.info("Health check endpoint was accessed.")
     return HealthResponse(status="healthy")

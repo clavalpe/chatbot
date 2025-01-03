@@ -7,7 +7,6 @@
   - [Swagger Documentation](#swagger-documentation)
   - [Endpoint](#endpoint)
   - [Example Usage with cURL](#example-usage-with-curl)
-  - [Response](#response)
 - [Installation](#installation)
   - [Deploying with Docker](#deploying-with-docker)
   - [Build and start the application using Docker Compose](#build-and-start-the-application-using-docker-compose)
@@ -22,10 +21,14 @@ You can access the interactive chatbot API documentation via Swagger at the foll
   - Swagger UI Documentation [http://localhost:8000/swagger](http://localhost:8000/swagger)
 
 
-### Endpoint
-The application provides an endpoint to verify its status and health. 
+### Endpoints
+The application provides several endpoints, including the health check and chatbot interaction. 
 
-- **GET** `http://localhost:8000/health/`
+- **GET** `http://localhost:8000/health/`  
+  Verifies the status and health of the application.
+
+- **POST** `http://localhost:8000/chat/`  
+  Allows interaction with the chatbot. Send a POST request with a JSON body to receive a response from the chatbot.
 
 ### Example usage with cURL
 To check the health status of the chatbot, use the following `curl` command:
@@ -34,11 +37,12 @@ To check the health status of the chatbot, use the following `curl` command:
 curl --request GET 'http://localhost:8000/health/' 
 ```
 
-### Response
-```json
-{
-    "status": "healthy"
-}
+To send a message to the chatbot, use the following curl command. Replace the <message> placeholder with the message you want to send:
+
+```bash
+curl --request POST 'http://localhost:8000/chat/' \
+--header 'Content-Type: application/json' \
+--data '{"user": "Hi, can you help me with something?"}'
 ```
 
 ## Installation
