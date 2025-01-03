@@ -1,7 +1,8 @@
 from fastapi.testclient import TestClient
-from chatbot_routes import app
+from src.main import app
 
 client = TestClient(app)
+
 
 class TestIntegrationChatBotRoutes:
     def test_health_check(self):
