@@ -65,9 +65,9 @@ To deploy the chatbot application using Docker, follow these steps:
 
 Run the following command to build and start the chatbot service:
 
-    ```bash
-    docker-compose up --build -d
-    ```
+```bash
+docker-compose up --build -d
+```
 
 This command will:
 - Build the Docker image if it hasn't been built already.
@@ -78,8 +78,8 @@ This command will:
 
 To stop the application, run:
 
-    ```bash
-    docker-compose down
-    ```
+```bash
+docker-compose down
+```
 
 This will stop and remove the container.
