@@ -18,13 +18,13 @@
 ### Endpoint
 The application provides an endpoint to verify its status and health. 
 
-- **GET** `HOSTNAME:8000/health/`
+- **GET** `http://localhost:8000/health/`
 
 ### Example usage with cURL
 To check the health status of the chatbot, use the following `curl` command:
 
 ```bash
-curl --request GET 'HOSTNAME:8000/health/' 
+curl --request GET 'http://localhost:8000/health/' 
 ```
 
 ### Response
