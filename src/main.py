@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import logging
 from src.api import health, chat
+import os
 
 
 loggingLevel = logging.INFO
@@ -16,3 +17,6 @@ app = FastAPI(
 
 app.include_router(health.router)
 app.include_router(chat.router)
+
+if not os.environ.get("OPENAI_API_KEY"):
+    os.environ["OPENAI_API_KEY"] = "YOUR_API_KEY"
