@@ -6,10 +6,10 @@ client = TestClient(app)
 
 class TestIntegrationChatRoute:
     def test_chat_route_check(self):
-        input_data = {"user": "Hi, can you help me with something?"}
+        input_data = {"user": "Hi, can you help me?"}
 
         expected_output = {
-            "assistant": "Hello! of course, let me know how I can help you!."
+            "assistant": "Of course"
         }
 
         response = client.post("/chat", json=input_data)

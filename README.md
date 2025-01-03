@@ -28,7 +28,7 @@ The application provides several endpoints, including the health check and chatb
   Verifies the status and health of the application.
 
 - **POST** `http://localhost:8000/chat/`  
-  Allows interaction with the chatbot. Send a POST request with a JSON body to receive a response from the chatbot.
+  Allows interaction with the chatbot. 
 
 ### Example usage with cURL
 To check the health status of the chatbot, use the following `curl` command:
