@@ -32,8 +32,7 @@ class ChatOpenAIClient:
     def invoke(self, compiled_workflow: CompiledStateGraph, message: str) -> str:
         input_messages = [HumanMessage(message)]
         chat_output = self._invoke_chat(compiled_workflow, input_messages)
-        breakpoint()
-        return chat_output.content
+        return chat_output["messages"][-1].content
 
     def build_workflow(self) -> CompiledStateGraph:
         self.workflow.add_edge(START, "model")
