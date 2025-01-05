@@ -4,20 +4,13 @@ from src.api.chat_open_ai_client import ChatOpenAIClient
 
 
 class TestChatOpenAIClient:
-    def test_it_replies_a_human_message(self, gpt_chat_mock):
-        message = "Hi, can you help me?"
-        gpt_chat_mock.return_value = AIMessage(content="Of course")
-
-        chat_response = ChatOpenAIClient().invoke(message)
-
-        assert chat_response == "Of course"
-        gpt_chat_mock.assert_called_once_with(
-            [HumanMessage(content=message, name="Lance")]
-        )
-        
     def test_it_remembers_previous_messages(self, gpt_chat_mock):
         message = "Hi! I'm Lance."
-        gpt_chat_mock.return_value = AIMessage(content="Hi Lance! How can I assist you today?")
+        gpt_chat_mock.return_value = {
+            'messages': [HumanMessage(content="Hi. I'm Lance"), 
+                         AIMessage(content='Hi Lance! How can I assist you today?')]
+        }
+        
         ai_client = ChatOpenAIClient()
         compiled_workflow = ai_client.build_workflow()
 
@@ -25,6 +18,5 @@ class TestChatOpenAIClient:
 
         assert chat_response == "Hi Lance! How can I assist you today?"
         gpt_chat_mock.assert_called_once_with(
-            compiled_workflow, 
-            [HumanMessage(message)]
+            compiled_workflow, [HumanMessage(message)]
         )

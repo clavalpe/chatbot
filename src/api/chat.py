@@ -6,6 +6,8 @@ from src.api.chat_open_ai_client import ChatOpenAIClient
 
 router = APIRouter()
 
+ai_client = ChatOpenAIClient()
+compiled_workflow = ai_client.build_workflow()
 
 class ChatRequest(BaseModel):
     user: str
@@ -21,5 +23,5 @@ async def chat(request: ChatRequest) -> ChatResponse:
     Allows interaction with a chatbot.
     """
     logging.info("Chat endpoint was accessed.")
-    response = ChatResponse(assistant=ChatOpenAIClient().invoke(request.user))
+    response = ChatResponse(assistant=ai_client.invoke(compiled_workflow, request.user))
     return response
