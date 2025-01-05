@@ -7,4 +7,4 @@ services:
         ports:
             - "8000:8000"
         environment:
-            - OPENAI_API_KEY=your_openai_api_key
+            - OPENAI_API_KEY=<replace_with_your_key>

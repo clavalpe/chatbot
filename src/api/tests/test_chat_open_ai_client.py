@@ -14,3 +14,17 @@ class TestChatOpenAIClient:
         gpt_chat_mock.assert_called_once_with(
             [HumanMessage(content=message, name="Lance")]
         )
+        
+    def test_it_remembers_previous_messages(self, gpt_chat_mock):
+        message = "Hi! I'm Lance."
+        gpt_chat_mock.return_value = AIMessage(content="Hi Lance! How can I assist you today?")
+        ai_client = ChatOpenAIClient()
+        compiled_workflow = ai_client.build_workflow()
+
+        chat_response = ai_client.invoke(compiled_workflow, message)
+
+        assert chat_response == "Hi Lance! How can I assist you today?"
+        gpt_chat_mock.assert_called_once_with(
+            compiled_workflow, 
+            [HumanMessage(message)]
+        )
