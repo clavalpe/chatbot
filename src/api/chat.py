@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import logging
 
 from src.api.chat_open_ai_client import ChatOpenAIClient
@@ -9,8 +9,9 @@ router = APIRouter()
 ai_client = ChatOpenAIClient()
 compiled_workflow = ai_client.build_workflow()
 
+
 class ChatRequest(BaseModel):
-    user: str
+    user: str = Field(..., example="Can you help me?")
 
 
 class ChatResponse(BaseModel):

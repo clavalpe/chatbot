@@ -7,10 +7,12 @@ class TestChatOpenAIClient:
     def test_it_remembers_previous_messages(self, gpt_chat_mock):
         message = "Hi! I'm Lance."
         gpt_chat_mock.return_value = {
-            'messages': [HumanMessage(content="Hi. I'm Lance"), 
-                         AIMessage(content='Hi Lance! How can I assist you today?')]
+            "messages": [
+                HumanMessage(content="Hi. I'm Lance"),
+                AIMessage(content="Hi Lance! How can I assist you today?"),
+            ]
         }
-        
+
         ai_client = ChatOpenAIClient()
         compiled_workflow = ai_client.build_workflow()
 

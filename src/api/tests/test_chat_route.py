@@ -8,8 +8,10 @@ client = TestClient(app)
 class TestIntegrationChatRoute:
     def test_chat_route_check(self, gpt_chat_mock):
         gpt_chat_mock.return_value = {
-            'messages': [HumanMessage(content="Hi, can you help me?"), 
-                         AIMessage(content='Of course')]
+            "messages": [
+                HumanMessage(content="Hi, can you help me?"),
+                AIMessage(content="Of course"),
+            ]
         }
 
         input_data = {"user": "Hi, can you help me?"}
