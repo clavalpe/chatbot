@@ -22,7 +22,7 @@ app = FastAPI(
 app.include_router(health.router)
 app.include_router(chat.router)
 
-load_dotenv()
-
 if not os.environ.get("OPENAI_API_KEY"):
-    raise OpenAIAPIKeyNotFound("OpenAI API Key not found in environment variables.")
+    load_dotenv()
+    if not os.environ.get("OPENAI_API_KEY"):
+        raise OpenAIAPIKeyNotFound("OpenAI API Key not found in environment variables.")
