@@ -2,7 +2,6 @@ from fastapi import FastAPI
 import logging
 from src.api import health, chat
 import os
-from dotenv import load_dotenv
 
 
 class OpenAIAPIKeyNotFound(Exception): ...
@@ -21,8 +20,6 @@ app = FastAPI(
 
 app.include_router(health.router)
 app.include_router(chat.router)
-
-load_dotenv()
 
 if not os.environ.get("OPENAI_API_KEY"):
     raise OpenAIAPIKeyNotFound("OpenAI API Key not found in environment variables.")
