@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 import logging
 
@@ -26,6 +26,9 @@ async def chat(request: ChatRequest) -> ChatResponse:
     Allows interaction with a chatbot.
     """
     logging.info("Chat endpoint was accessed.")
+
+    if not request.user:
+        raise HTTPException(status_code=400, detail="The request cannot be empty.")
 
     response = ChatResponse(
         assistant=ai_client.invoke("Lance", request.user)
