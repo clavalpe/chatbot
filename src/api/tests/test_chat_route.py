@@ -27,3 +27,8 @@ class TestIntegrationChatRoute:
         input_data = {"user": ""}
         response = client.post("/chat", json=input_data)
         assert response.status_code == 400
+
+    def test_wrong_message_format(self):
+        input_data = {"users ": "Hi, can you help me?"}
+        response = client.post("/chat", json=input_data)
+        assert response.status_code == 422
