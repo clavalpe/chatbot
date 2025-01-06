@@ -11,7 +11,7 @@ compiled_workflow = ai_client.build_workflow()
 
 
 class ChatRequest(BaseModel):
-    user: str = Field(..., example="Can you help me?")
+    user: str = Field(..., json_schema_extra={'example': "Can you help me?"})
 
 
 class ChatResponse(BaseModel):
