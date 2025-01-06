@@ -32,3 +32,8 @@ class TestIntegrationChatRoute:
         input_data = {"users ": "Hi, can you help me?"}
         response = client.post("/chat", json=input_data)
         assert response.status_code == 422
+
+    def test_long_message(self):
+        long_message = "a" * 10000
+        response = client.post("/chat", json={"user": long_message})
+        assert response.status_code == 400
