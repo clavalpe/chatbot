@@ -8,10 +8,21 @@
   - [Endpoint](#endpoint)
   - [Example Usage with cURL](#example-usage-with-curl)
 - [Installation](#installation)
+  - [Deploying with Uvicorn](#deploying-with-uvicorn)
   - [Deploying with Docker](#deploying-with-docker)
   - [Build and start the application using Docker Compose](#build-and-start-the-application-using-docker-compose)
 
 ## Overview
+
+The Chatbot application is a RESTful API designed to facilitate natural language interactions with users. It leverages the OpenAI GPT model to process user inputs and generate contextual responses. The application is built to be lightweight, scalable, and easily deployable, supporting both Docker and Docker Compose setups.
+
+Key features include:
+
+- **Interactive Chat API**: A POST endpoint for real-time conversations with the chatbot.
+- **Health Check Endpoint**: A GET endpoint to monitor application health.
+- **Swagger Integration**: Interactive API documentation to test and explore endpoints.
+- **Easy Deployment**: Dockerized setup for seamless installation and deployment.
+
 
 ## Usage
 
@@ -48,33 +59,71 @@ curl --request POST 'http://localhost:8000/chat/' \
 ## Installation
 Follow the instructions below to install and deploy the chatbot application.
 
-### Deploying with Docker
-To deploy the chatbot application using Docker, follow these steps:
+** Set OpenAI API key **
+* If you don't have an OpenAI API key, you can sign up [here](https://openai.com/index/openai-api/).
+*  Set `OPENAI_API_KEY` in your environment
 
-1. **Clone the repository:**
+
+**Clone the repository:**
 
     ```bash
     git clone https://github.com/clavalpe/chatbot
     cd chatbot
     ```
 
-2. **Build the Docker image:**
+
+### Deploying with Uvicorn
+To run the application locally using Uvicorn, follow these steps:
+
+1. **Install dependencies:**
+
+    Ensure you have Python and pip installed. Then, install the required dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. **Run the application:**
+
+    Use the following command to start the application with Uvicorn:
+
+    ```bash
+    uvicorn src.main:app --reload
+    ```
+
+    This command will start the application in development mode with hot-reloading enabled. The application will be available at [http://localhost:8000](http://localhost:8000).
+
+3. **Verify the application:**
+
+    - Access the Swagger documentation at [http://localhost:8000/swagger](http://localhost:8000/swagger).
+    - Check the health endpoint by navigating to [http://localhost:8000/health/](http://localhost:8000/health/).
+
+
+### Deploying with Docker
+To deploy the chatbot application using Docker, follow these steps:
+
+1. **Build the Docker image:**
 
     ```bash
     docker build -t chatbot .
     ```
 
-3. **Run the Docker container:**
+2. **Run the Docker container:**
 
     ```bash
-    docker run -d -p 8000:8000 chatbot
+    docker run --name mychatbot -p 8000:8000 -e OPENAI_API_KEY=<replace_with_your_key> chatbot
     ```
 
     This command will start the application on port 8000. You can access the application at [http://localhost:8000](http://localhost:8000).
 
-### Build and start the application using Docker Compose
+### Docker Compose
 
 Run the following command to build and start the chatbot service:
+
+** Set OpenAI API key **
+*  Set `OPENAI_API_KEY` in docker-compose.yml file 
+
+** Build and start the application **
 
 ```bash
 docker-compose up --build -d
@@ -83,7 +132,6 @@ docker-compose up --build -d
 This command will:
 - Build the Docker image if it hasn't been built already.
 - Start the application container in detached mode (`-d`).
-- Map port 8000 on your local machine to port 8000 in the container.
 
 **Stopping the application:**
 
