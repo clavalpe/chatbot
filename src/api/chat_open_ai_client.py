@@ -20,8 +20,7 @@ class AIClient(ABC):
     def invoke(self, conversation_id: str, message: str) -> None: ...
 
 
-class OpenAIClientError(Exception):
-    ...
+class OpenAIClientError(Exception): ...
 
 
 class LangChainClient(AIClient):
@@ -73,7 +72,7 @@ class LangChainClient(AIClient):
         except Exception as e:
             logging.error(f"Error invoking AI client: {e}")
             raise OpenAIClientError
-        
+
         logging.info("Chatbot response received.")
         return chat_output["messages"][-1].content
 

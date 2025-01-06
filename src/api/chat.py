@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 import logging
 
-from src.api.chat_open_ai_client import LangChainClient
+from src.api.chat_open_ai_client import LangChainClient, OpenAIClientError
 
 router = APIRouter()
 
@@ -29,11 +29,18 @@ async def chat(request: ChatRequest) -> ChatResponse:
 
     if not request.user:
         raise HTTPException(status_code=400, detail="The request cannot be empty.")
-    
+
     if len(request.user) > 500:
         raise HTTPException(status_code=400, detail="The request is too long.")
 
-    response = ChatResponse(
-        assistant=ai_client.invoke("Lance", request.user)
-    )  # TODO: change conversation_id
+    try:
+        response = ChatResponse(
+            assistant=ai_client.invoke("Lance", request.user)
+        )  # TODO: add functionality to manage several conversation_id
+    except OpenAIClientError:
+        raise HTTPException(
+            status_code=500,
+            detail="The chatbot service is currently unavailable. Please try again later.",
+        )
+
     return response
