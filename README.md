@@ -75,7 +75,15 @@ Follow the instructions below to install and deploy the chatbot application.
 ### Deploying with Uvicorn
 To run the application locally using Uvicorn, follow these steps:
 
-1. **Install dependencies:**
+1. **Set environment variables:**
+
+    Before running the application, set up the .env file in the root directory. This file should contain the OPENAI_API_KEY variable and any other required environment variables. Here's an example:
+
+    ```bash
+    echo "OPENAI_API_KEY=<your_openai_api_key>" > .env
+    ```
+
+2. **Install dependencies:**
 
     Ensure you have Python and pip installed. Then, install the required dependencies:
 
@@ -83,7 +91,7 @@ To run the application locally using Uvicorn, follow these steps:
     pip install -r requirements.txt
     ```
 
-2. **Run the application:**
+3. **Run the application:**
 
     Use the following command to start the application with Uvicorn:
 
@@ -93,7 +101,7 @@ To run the application locally using Uvicorn, follow these steps:
 
     This command will start the application in development mode with hot-reloading enabled. The application will be available at [http://localhost:8000](http://localhost:8000).
 
-3. **Verify the application:**
+4. **Verify the application:**
 
     - Access the Swagger documentation at [http://localhost:8000/swagger](http://localhost:8000/swagger).
     - Check the health endpoint by navigating to [http://localhost:8000/health/](http://localhost:8000/health/).
