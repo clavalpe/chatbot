@@ -37,3 +37,15 @@ class TestIntegrationChatRoute:
         long_message = "a" * 10000
         response = client.post("/chat", json={"user": long_message})
         assert response.status_code == 400
+
+    def test_returns_error_message_when_chabot_service_is_not_available(self, gpt_chat_mock):
+        gpt_chat_mock.side_effect = Exception
+
+        input_data = {"user": "Hi, can you help me?"}
+
+        expected_output = {"detail": "The chatbot service is currently unavailable. Please try again later."}
+
+        response = client.post("/chat", json=input_data)
+
+        assert response.status_code == 500
+        assert response.json() == expected_output
