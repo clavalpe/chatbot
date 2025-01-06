@@ -20,6 +20,10 @@ class AIClient(ABC):
     def invoke(self, conversation_id: str, message: str) -> None: ...
 
 
+class OpenAIClientError(Exception):
+    ...
+
+
 class LangChainClient(AIClient):
     MODEL = "gpt-4o-mini"
 
@@ -63,13 +67,18 @@ class LangChainClient(AIClient):
     def invoke(self, conversation_id: str, message: str) -> str:
         input_messages = [HumanMessage(message)]
         config = {"configurable": {"thread_id": conversation_id}}
-        chat_output = self._invoke_chat(config, input_messages)
+        logging.info(f"Sending request to chatbot. Message: '{input_messages}'")
+        try:
+            chat_output = self._invoke_chat(config, input_messages)
+        except Exception as e:
+            logging.error(f"Error invoking AI client: {e}")
+            raise OpenAIClientError
+        
+        logging.info("Chatbot response received.")
         return chat_output["messages"][-1].content
 
     def _invoke_chat(self, config, input_messages):
-        logging.info(f"Sending request to chatbot. Message: '{input_messages}'")
         response = self._compiled_workflow.invoke(
             {"messages": input_messages}, config=config
         )
-        logging.info("Chatbot response received.")
         return response
