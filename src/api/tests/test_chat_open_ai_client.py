@@ -1,6 +1,10 @@
+import pytest
 from langchain_core.messages import HumanMessage, AIMessage
-
 from src.api.chat_open_ai_client import LangChainClient
+
+
+class OpenAIClientError(Exception):
+    ...
 
 
 class TestChatOpenAIClient:
@@ -21,3 +25,13 @@ class TestChatOpenAIClient:
 
         assert chat_response == "Hi Lance! How can I assist you today?"
         gpt_chat_mock.assert_called_once_with(config, [HumanMessage(message)])
+
+    def test_it_remembers_previous_messages(self, gpt_chat_mock):
+        message = "Hi! I'm Lance."
+        conversation_id = "Lance"
+        ai_client = LangChainClient()
+
+        gpt_chat_mock.side_effect = Exception
+
+        with pytest.raises(OpenAIClientError):
+            ai_client.invoke(conversation_id, message)

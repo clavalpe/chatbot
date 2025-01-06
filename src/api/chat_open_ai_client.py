@@ -60,7 +60,7 @@ class LangChainClient(AIClient):
         response = model.invoke(prompt)
         return {"messages": response}
 
-    def invoke(self, conversation_id: str, message: str) -> None:
+    def invoke(self, conversation_id: str, message: str) -> str:
         input_messages = [HumanMessage(message)]
         config = {"configurable": {"thread_id": conversation_id}}
         chat_output = self._invoke_chat(config, input_messages)
