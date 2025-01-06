@@ -18,7 +18,7 @@ The Chatbot application is a RESTful API designed to facilitate natural language
 
 Key features include:
 
-- **Interactive Chat API**: A POST endpoint for real-time conversations with the chatbot.
+- **Interactive Chat Endpoint**: A POST endpoint for real-time conversations with the chatbot.
 - **Health Check Endpoint**: A GET endpoint to monitor application health.
 - **Swagger Integration**: Interactive API documentation to test and explore endpoints.
 - **Easy Deployment**: Dockerized setup for seamless installation and deployment.
