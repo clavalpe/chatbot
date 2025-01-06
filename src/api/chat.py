@@ -17,12 +17,16 @@ class ChatResponse(BaseModel):
     assistant: str
 
 
+class AIClientInvocationError(Exception): ...
+
+
 @router.post("/chat", response_model=ChatResponse, tags=["Chat"])
 async def chat(request: ChatRequest) -> ChatResponse:
     """
     Allows interaction with a chatbot.
     """
     logging.info("Chat endpoint was accessed.")
+
     response = ChatResponse(
         assistant=ai_client.invoke("Lance", request.user)
     )  # TODO: change conversation_id

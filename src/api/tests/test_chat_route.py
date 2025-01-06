@@ -22,3 +22,8 @@ class TestIntegrationChatRoute:
 
         assert response.status_code == 200
         assert response.json() == expected_output
+
+    def test_empty_message(self):
+        input_data = {"user": ""}
+        response = client.post("/chat", json=input_data)
+        assert response.status_code == 500
