@@ -29,6 +29,9 @@ async def chat(request: ChatRequest) -> ChatResponse:
 
     if not request.user:
         raise HTTPException(status_code=400, detail="The request cannot be empty.")
+    
+    if len(request.user) > 500:
+        raise HTTPException(status_code=400, detail="The request is too long.")
 
     response = ChatResponse(
         assistant=ai_client.invoke("Lance", request.user)
