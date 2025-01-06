@@ -59,7 +59,7 @@ curl --request POST 'http://localhost:8000/chat/' \
 ## Installation
 Follow the instructions below to install and deploy the chatbot application.
 
-** Set OpenAI API key **
+**Set OpenAI API key**
 * If you don't have an OpenAI API key, you can sign up [here](https://openai.com/index/openai-api/).
 *  Set `OPENAI_API_KEY` in your environment
 
@@ -120,7 +120,6 @@ To deploy the chatbot application using Docker, follow these steps:
 
 Run the following command to build and start the chatbot service:
 
-** Set OpenAI API key **
 *  Set `OPENAI_API_KEY` in docker-compose.yml file 
 
 ** Build and start the application **
