@@ -99,7 +99,7 @@ Run the following command to build and start the chatbot service:
 
 *  Set `OPENAI_API_KEY` in docker-compose.yml file 
 
-** Build and start the application **
+**Build and start the application**
 
 ```bash
 docker-compose up --build -d
