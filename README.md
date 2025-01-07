@@ -152,8 +152,8 @@ curl --request POST 'http://localhost:8000/chat/' \
 ```
 
 ## Future Work
-
-- Add tests for multi-conversation feature.
+- Add tests for multi-conversation feature (lang_chain_client.py module).
+- Implement the ConversationRepository abstract class with a database to add persistence. The current implementation stores conversations in memory, which limits scalability and persistence. A future implementation will use a database to ensure conversations are not lost when the application restarts.
 - Fine-tune the chatbot's memory management to fit specific needs (e.g., technical support, extensive context, etc.). 
 - Measure the latency of user requests.
 - Implement user authentication.
@@ -163,5 +163,4 @@ curl --request POST 'http://localhost:8000/chat/' \
 
 
 # License
-
 This project is licensed under the MIT License.

@@ -41,7 +41,9 @@ async def chat(request: ChatRequest) -> ChatResponse:
         raise HTTPException(status_code=400, detail="The request cannot be empty.")
 
     if len(request.user) > 500:
-        logging.warning(f"Received a request that exceeds length limit: {len(request.user)} characters")
+        logging.warning(
+            f"Received a request that exceeds length limit: {len(request.user)} characters"
+        )
         raise HTTPException(status_code=400, detail="The request is too long.")
 
     try:
