@@ -3,14 +3,15 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Installation](#installation)
+  - [Deploying with Uvicorn](#deploying-with-uvicorn)
+  - [Deploying with Docker](#deploying-with-docker)
+  - [Deploying with Docker Compose](#deploying-with-docker-compose)
 - [Usage](#usage)
   - [Swagger Documentation](#swagger-documentation)
   - [Endpoint](#endpoint)
   - [Example Usage with cURL](#example-usage-with-curl)
-- [Installation](#installation)
-  - [Deploying with Uvicorn](#deploying-with-uvicorn)
-  - [Deploying with Docker](#deploying-with-docker)
-  - [Build and start the application using Docker Compose](#build-and-start-the-application-using-docker-compose)
+- [License](#license)
 
 ## Overview
 
@@ -22,39 +23,6 @@ Key features include:
 - **Health Check Endpoint**: A GET endpoint to monitor application health.
 - **Swagger Integration**: Interactive API documentation to test and explore endpoints.
 - **Easy Deployment**: Dockerized setup for seamless installation and deployment.
-
-
-## Usage
-
-### Swagger documentation
-You can access the interactive chatbot API documentation via Swagger at the following URL: 
-
-  - Swagger UI Documentation [http://localhost:8000/swagger](http://localhost:8000/swagger)
-
-
-### Endpoints
-The application provides several endpoints, including the health check and chatbot interaction. 
-
-- **GET** `http://localhost:8000/health/`  
-  Verifies the status and health of the application.
-
-- **POST** `http://localhost:8000/chat/`  
-  Allows interaction with the chatbot. 
-
-### Example usage with cURL
-To check the health status of the chatbot, use the following `curl` command:
-
-```bash
-curl --request GET 'http://localhost:8000/health/' 
-```
-
-To send a message to the chatbot, use the following curl command. Replace the <message> placeholder with the message you want to send:
-
-```bash
-curl --request POST 'http://localhost:8000/chat/' \
---header 'Content-Type: application/json' \
---data '{"user": "Hi, can you help me with something?"}'
-```
 
 ## Installation
 Follow the instructions below to install and deploy the chatbot application.
@@ -77,7 +45,7 @@ To run the application locally using Uvicorn, follow these steps:
 
 1. **Set environment variables:**
 
-    Before running the application, set up the .env file in the root directory. This file should contain the OPENAI_API_KEY variable and any other required environment variables. Here's an example:
+    Before running the application, set up the .env file in the root directory. This file should contain the OPENAI_API_KEY variable. Here's an example:
 
     ```bash
     echo "OPENAI_API_KEY=<your_openai_api_key>" > .env
@@ -85,7 +53,7 @@ To run the application locally using Uvicorn, follow these steps:
 
 2. **Install dependencies:**
 
-    Ensure you have Python and pip installed. Then, install the required dependencies:
+    Ensure you have Python 3 and pip installed. Then, install the required dependencies:
 
     ```bash
     pip install -r requirements.txt
@@ -124,7 +92,7 @@ To deploy the chatbot application using Docker, follow these steps:
 
     This command will start the application on port 8000. You can access the application at [http://localhost:8000](http://localhost:8000).
 
-### Docker Compose
+### Deploying with Docker Compose
 
 Run the following command to build and start the chatbot service:
 
@@ -149,3 +117,39 @@ docker-compose down
 ```
 
 This will stop and remove the container.
+
+## Usage
+
+### Swagger documentation
+You can access the interactive chatbot API documentation via Swagger at the following URL: 
+
+  - Swagger UI Documentation [http://localhost:8000/swagger](http://localhost:8000/swagger)
+
+
+### Endpoints
+The application provides several endpoints, including the health check and chatbot interaction. 
+
+- **GET** `http://localhost:8000/health/`  
+  Verifies the status and health of the application.
+
+- **POST** `http://localhost:8000/chat/`  
+  Allows interaction with the chatbot. 
+
+### Example usage with cURL
+To check the health status of the chatbot, use the following `curl` command:
+
+```bash
+curl --request GET 'http://localhost:8000/health/' 
+```
+
+To send a message to the chatbot, use the following curl command. Replace the <message> placeholder with the message you want to send:
+
+```bash
+curl --request POST 'http://localhost:8000/chat/' \
+--header 'Content-Type: application/json' \
+--data '{"user": "Hi, can you help me?"}'
+```
+
+# License
+
+This project is licensed under the MIT License.
