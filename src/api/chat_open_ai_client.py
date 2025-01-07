@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import logging
 from abc import ABC, abstractmethod
 from typing import Dict, Sequence
@@ -81,3 +82,45 @@ class LangChainClient(AIClient):
             {"messages": input_messages}, config=config
         )
         return response
+
+
+@dataclass
+class Conversation:
+    user: str
+    ai_client: AIClient
+
+    def call(self, message: str) -> str:
+        conversation_id = self.user
+        return self.ai_client.invoke(conversation_id, message)
+
+
+class ConversationRepository(ABC):
+    @abstractmethod
+    def get(self, user: str) -> Conversation: ...
+
+
+class InMemoryConversationRepository(ConversationRepository):
+    def __init__(self) -> None:
+        self._conversations: list[Conversation] = []
+
+    def get(self, user: str) -> Conversation:
+        for conversation in self._conversations:
+            if conversation.user == user:
+                return conversation
+
+        new_conversation = Conversation(user=user, ai_client=LangChainClient())
+        self._conversations.append(new_conversation)
+
+        return new_conversation
+
+
+class SendMessage:
+    def __init__(self, conversation_repository: ConversationRepository) -> None:
+        self._conversation_repository = conversation_repository
+
+    def execute(self, user: str, message: str) -> str:
+        conversation = self._conversation_repository.get(user)
+
+        ai_response = conversation.call(message=message)
+
+        return ai_response

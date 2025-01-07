@@ -2,11 +2,20 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 import logging
 
-from src.api.chat_open_ai_client import LangChainClient, OpenAIClientError
+from src.api.chat_open_ai_client import (
+    LangChainClient,
+    OpenAIClientError,
+    SendMessage,
+    InMemoryConversationRepository,
+)
 
 router = APIRouter()
 
 ai_client = LangChainClient()
+
+conversation_repository = InMemoryConversationRepository()
+
+USER = "Lance"
 
 
 class ChatRequest(BaseModel):
@@ -35,8 +44,10 @@ async def chat(request: ChatRequest) -> ChatResponse:
 
     try:
         response = ChatResponse(
-            assistant=ai_client.invoke("Lance", request.user)
-        )  # TODO: add functionality to manage several conversation_id
+            assistant=SendMessage(
+                conversation_repository=conversation_repository
+            ).execute(USER, request.user)
+        )
     except OpenAIClientError:
         raise HTTPException(
             status_code=500,

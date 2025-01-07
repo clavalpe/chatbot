@@ -15,7 +15,6 @@ class TestIntegrationChatRoute:
         }
 
         input_data = {"user": "Hi, can you help me?"}
-
         expected_output = {"assistant": "Of course"}
 
         response = client.post("/chat", json=input_data)
