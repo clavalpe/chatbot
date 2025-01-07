@@ -1,6 +1,6 @@
 import pytest
 from langchain_core.messages import HumanMessage, AIMessage
-from src.api.chat_open_ai_client import LangChainClient, OpenAIClientError
+from src.api.lang_chain_client import LangChainClient, OpenAIClientError
 
 
 class TestChatOpenAIClient:

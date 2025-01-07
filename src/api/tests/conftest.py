@@ -1,7 +1,7 @@
 from unittest.mock import patch
 import pytest
 
-from src.api.chat_open_ai_client import LangChainClient
+from src.api.lang_chain_client import LangChainClient
 from langchain_core.messages import HumanMessage, AIMessage
 
 

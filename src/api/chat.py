@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 import logging
 
-from src.api.chat_open_ai_client import (
+from src.api.lang_chain_client import (
     LangChainClient,
     OpenAIClientError,
     SendMessage,
