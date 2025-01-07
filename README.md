@@ -11,6 +11,7 @@
   - [Swagger Documentation](#swagger-documentation)
   - [Endpoint](#endpoint)
   - [Example Usage with cURL](#example-usage-with-curl)
+- [Future work](#future-work)  
 - [License](#license)
 
 ## Overview
@@ -34,10 +35,10 @@ Follow the instructions below to install and deploy the chatbot application.
 
 **Clone the repository:**
 
-    ```bash
-    git clone https://github.com/clavalpe/chatbot
-    cd chatbot
-    ```
+```bash
+git clone https://github.com/clavalpe/chatbot
+cd chatbot
+```
 
 
 ### Deploying with Uvicorn
@@ -149,6 +150,17 @@ curl --request POST 'http://localhost:8000/chat/' \
 --header 'Content-Type: application/json' \
 --data '{"user": "Hi, can you help me?"}'
 ```
+
+## Future Work
+
+- Add tests for multi-conversation feature.
+- Fine-tune the chatbot's memory management to fit specific needs (e.g., technical support, extensive context, etc.). 
+- Measure the latency of user requests.
+- Implement user authentication.
+- Update the /chat endpoint to support multiple concurrent conversations, utilizing the functionality already supported by the lang_chain_client.py module.
+- Update the lang_chain_client.py module to allow users to have multiple conversations with the chatbot.
+- Support streaming responses.
+
 
 # License
 
