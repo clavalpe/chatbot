@@ -9,7 +9,7 @@
   - [Deploying with Docker Compose](#deploying-with-docker-compose)
 - [Usage](#usage)
   - [Swagger Documentation](#swagger-documentation)
-  - [Endpoint](#endpoint)
+  - [Endpoints](#endpoints)
   - [Example Usage with cURL](#example-usage-with-curl)
 - [Future work](#future-work)  
 - [License](#license)
